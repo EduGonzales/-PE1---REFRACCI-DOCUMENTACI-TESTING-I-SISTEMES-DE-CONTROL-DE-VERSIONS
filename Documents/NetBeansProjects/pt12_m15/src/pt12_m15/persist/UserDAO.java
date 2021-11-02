@@ -21,7 +21,12 @@ import org.apache.commons.codec.binary.Base64;
  * @author J1E2S
  */
 public class UserDAO implements UserInterface {
-
+    /**
+     * this function will be find in the csv the username , password and role to login
+     * @param username {String} username
+     * @param password {String} password
+     * @return {String[]} string of arrays to validate the role
+     */
     public String[] findUserLogin(String username, String password) {
         //array for save the username and role of the user        
         String[] session_user = new String[3];
@@ -30,7 +35,7 @@ public class UserDAO implements UserInterface {
         boolean exists = false;   
         
         try{
-            List<Usuario> usuarios = new ArrayList<Usuario>(); // Lista donde guardaremos los datos del archivo
+            List<Usuario> usuarios = new ArrayList<Usuario>(); // list for save all the users
             
             CsvReader leerUsuarios = new CsvReader("users.csv");
             leerUsuarios.readHeaders();
@@ -41,7 +46,7 @@ public class UserDAO implements UserInterface {
                 String role=leerUsuarios.get(2);
                 usuarios.add(new Usuario(nickname, pass,role)); // Añade la informacion a la lista
             }
-            leerUsuarios.close(); // Cierra el archivo
+            leerUsuarios.close(); // close the file
             
             // Recorremos la lista y la mostramos en la pantalla
             for(int i=0;i<usuarios.size() && !exists; i++) {

@@ -67,12 +67,22 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "nickname=" + nickname + ", password=" + password + ", role=" + role + '}';
     }
-
+    /**
+     * This function its for validate the login user
+     * @param username {String} username
+     * @param password {String} password
+     * @return {String[]} array strings to validate the login
+     */
     public String[] loginUser(String username, String password) {
+        //inicializate the userdao
         userdao=new UserDAO();
+        //this function call to the function to find in the CSV
        return userdao.findUserLogin(username,password);
     }
-
+    /**
+     * This form its for ask the user the data to the new user
+     * @return 
+     */
     public Usuario FormUser() {
         Usuario user=new Usuario();
         String nickname,password,role;
@@ -93,7 +103,10 @@ public class Usuario {
         
         return user;     
     }
-
+    /**
+     * This fuction its for ask to the user the nickname to add
+     * @return {String} nickname
+     */
     private String AskNickname() {
         Scanner sc = new Scanner(System.in);
         String nickname;
@@ -107,7 +120,10 @@ public class Usuario {
             return nickname;
         }
     }
-
+    /**
+     * This function will be
+     * @return {String} password
+     */
     private String AskPassword() {
         Scanner sc = new Scanner(System.in);
         String password;

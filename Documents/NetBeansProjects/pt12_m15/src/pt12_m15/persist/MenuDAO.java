@@ -19,8 +19,9 @@ public class MenuDAO implements MenuInterface{
      */
     @Override
     public String Conversion_DNA_to_RNA(String DNAInput) {
+        //variable null 
          String RNAString = "";
-        
+        //for for convers the t in u -> DNA TO RNA
         for (int i = 0; i < DNAInput.length(); i++)
         {
             if(DNAInput.charAt(i) == 'T')
@@ -36,75 +37,74 @@ public class MenuDAO implements MenuInterface{
         return RNAString;
     }
     /**
-     * 
-     * @param DNAorRNA_STRAND 
+     * This function will be count the most nitrogenous bases in the strand
+     * @param DNAorRNA_STRAND {String} strand of RNA OR DNA
      */
     public void Count_most_nitrogenous_bases(String DNAorRNA_STRAND) {
         String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
 
-        int contadorVocales = 0;
-        char letraArray[] = strand.toCharArray();
-        char letra = letraArray[0];
-        int contadorLetraRepetida = 0;
+        int Cont_nitrogenous_bases = 0;
+        char charArray[] = strand.toCharArray();
+        char chaR = charArray[0];
+        int count_repeated = 0;
 
         for(int i=0; i<strand.length(); i++){
             switch(strand.charAt(i)){
                 case 'a': case 'g': case 't': case 'c': case 'u':
-                    contadorVocales++;
+                    Cont_nitrogenous_bases++;
                     break;
             }
         }
-        for(int j =0;j<letraArray.length;j++){
-            int contador = 0;//Antes de recorrer el array pongo el contador en 0
-            for(int k=0;k<letraArray.length;k++){
-                if(letraArray[j] == letraArray[k]) //Letra encontrada
+        for(int j =0;j<charArray.length;j++){
+            int contador = 0;//counter to 0 
+            for(int k=0;k<charArray.length;k++){
+                if(charArray[j] == charArray[k]) //char founded
                     contador++;
             }
-            if(contadorLetraRepetida < contador) { //Si la letra actual superó a la que había antes
-                contadorLetraRepetida = contador; //Actualiza el contador de repeticiones con el número máximo
-                letra = letraArray[j]; //Actualiza la letra
+            if(count_repeated < contador) { //If the current letter exceeded the one before
+                count_repeated = contador; //Update the rep counter with the maximum number
+                chaR = charArray[j]; //update the char
             }
         }
-        System.out.println("La base '" + letra + "' es la mas repetida con  "+ contadorLetraRepetida + " veces.");
+        System.out.println("Nitrogenous base '" + chaR + "' is the most repeated with  "+ count_repeated + " TIMES.");
     }
     /**
-     * 
-     * @param DNAorRNA_STRAND 
+     * This function will be count the LESS nitrogenous bases in the strand
+     * @param DNAorRNA_STRAND {String} strand of RNA OR DNA
      */
     public void Count_less_nitrogenous_bases(String DNAorRNA_STRAND) {
         String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
         
-        int contadorVocales = 0;
-        char letraArray[] = strand.toCharArray();
-        char letra = letraArray[0];
-        int contadorLetraRepetida = 0;
+        int Count_char = 0;
+        char charArray[] = strand.toCharArray();
+        char chaR = charArray[0];
+        int count_repeated = 0;
 
         for(int i=0; i<strand.length(); i++){
             switch(strand.charAt(i)){
                 case 'a': case 'g': case 't': case 'c': case 'u':
-                    contadorVocales++;
+                    Count_char++;
                     break;
             }
         }
-        System.out.println("Hay " + contadorVocales + " vocales.");
 
-        for(int j =0;j<letraArray.length;j++){
-            int contador = 0;//Antes de recorrer el array pongo el contador en 0
-            for(int k=0;k<letraArray.length;k++){
-                if(letraArray[j] == letraArray[k]) //Letra encontrada
+        for(int j =0;j<charArray.length;j++){
+            int contador = 0;//counter to 0 
+            for(int k=0;k<charArray.length;k++){
+                if(charArray[j] == charArray[k]) //char founded
                     contador++;
             }
-            if(contadorLetraRepetida < contador) { //Si la letra actual superó a la que había antes
-                contadorLetraRepetida = contadorLetraRepetida; //Actualiza el contador de repeticiones con el número máximo
-                letra = letraArray[j]; //Actualiza la letra
+            if(count_repeated < contador) { //If the current letter exceeded the one before
+                count_repeated = count_repeated; //Update the rep counter with the maximum number
+                chaR = charArray[j]; //update the char
             }
         }
 
-        System.out.println("La base '" + letra + "' es la menos repetida con  "+ contadorLetraRepetida + " veces.");
+        System.out.println("Nitrogenous base '" + chaR + "' is the less repeated with  "+ count_repeated + " TIMES.");
     }
     /**
-     * 
-     * @param DNAInput 
+     * This function will be count all the nitrogenous bases in the strand
+     * @param DNAInput {String} dna or rna strand
      */
     public void count_nitrogenous_bases(String DNAInput) {
         int ProteinCounterA = 0;
@@ -139,47 +139,47 @@ public class MenuDAO implements MenuInterface{
         }
     }
     /**
-     * 
-     * @param DNAInput
-     * @return 
+     * This function will ve conversion a strand of RNA TO DNA
+     * @param RNA_STRAND {String} rna_Strand
+     * @return {String} DNA_STRAND
      */
-    public String Conversion_RNA_to_DNA(String DNAInput) {
-        String error="";
-        String RNAString = "";
+    public String Conversion_RNA_to_DNA(String RNA_STRAND) {
+        //DEClarate variable for the DNA STRAND
+        String DNA_sTRING = "";
         
-        for (int i = 0; i < DNAInput.length(); i++)
+        for (int i = 0; i < RNA_STRAND.length(); i++)
         {
-            if(DNAInput.charAt(i) == 'U')
+            if(RNA_STRAND.charAt(i) == 'U')
             {
-                RNAString = RNAString + "T";
+                DNA_sTRING = DNA_sTRING + "T";
             }
             else
             {                                      
-                RNAString = RNAString + DNAInput.charAt(i);
+                DNA_sTRING = DNA_sTRING + RNA_STRAND.charAt(i);
             }
             
         }
-        return RNAString;
+        return DNA_sTRING;
     }
     /**
-     * 
-     * @param DNAInput 
+     * this function will be reverse the strand 
+     * @param DNAInput {String}strand_reversed
      */
     public void ReverseString_function(String DNAInput) {
         StringBuilder stringreversed = new StringBuilder();
  
-        // append a string into StringBuilder input1
+        // append a string into StringBuilder stringreversed
         stringreversed.append(DNAInput);
  
-        // reverse StringBuilder input1
+        // reverse StringBuilder stringreversed
         stringreversed.reverse();
  
         // print reversed String
         System.out.println(stringreversed);
     }
     /**
-     * 
-     * @return 
+     * This function its for validate the strand, RNA OR DNA
+     * @return {String} dna or rna
      */
     public String Validate_strand_function() {
                 Scanner sc=new Scanner(System.in);
