@@ -75,6 +75,7 @@ public class UserDAO implements UserInterface {
                 
             }else{
                 exists=false;
+                session_user[0]="error";
             }
             }
             

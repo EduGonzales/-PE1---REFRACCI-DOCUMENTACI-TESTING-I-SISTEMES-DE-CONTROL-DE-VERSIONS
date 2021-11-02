@@ -29,8 +29,14 @@ public class MenuDAO implements MenuInterface{
                 RNAString = RNAString + "U";
             }
             else
-            {                                     
-                RNAString = RNAString + DNAInput.charAt(i);
+            {    
+                if(DNAInput.charAt(i) != 'T' && DNAInput.charAt(i) != 'A' &&DNAInput.charAt(i) != 'G' && DNAInput.charAt(i) != 'C'){
+                return "Not correct strand";
+                }
+                else{
+                    RNAString = RNAString + DNAInput.charAt(i);
+                }
+                
             }
             
         }
@@ -182,7 +188,7 @@ public class MenuDAO implements MenuInterface{
      * @return {String} dna or rna
      */
     public String Validate_strand_function() {
-                Scanner sc=new Scanner(System.in);
+        Scanner sc=new Scanner(System.in);
         System.out.println("Introduce the strand : ");
         String strand_unvalidaded=sc.nextLine();
         
@@ -220,5 +226,5 @@ public class MenuDAO implements MenuInterface{
     }
            return strand_unvalidaded;
     }
-    
+
 }
