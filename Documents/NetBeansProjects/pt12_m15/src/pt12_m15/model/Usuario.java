@@ -121,7 +121,10 @@ public class Usuario {
             return password;
         }
     }
-
+    /**
+     * 
+     * @param user 
+     */
     public void AddNewUser(Usuario user) {
        userdao=new UserDAO();
        userdao.add_new_user(user);
