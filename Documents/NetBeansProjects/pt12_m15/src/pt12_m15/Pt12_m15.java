@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.apache.commons.codec.binary.Base64;
+import pt12_m15.model.DNA_or_RNA_Strand;
 
 
 
@@ -26,6 +27,7 @@ import org.apache.commons.codec.binary.Base64;
  */
 public class Pt12_m15 {
 private Usuario UserList;
+private DNA_or_RNA_Strand conver;
     /**
      * @param args the command line arguments
      */
@@ -125,6 +127,7 @@ private Usuario UserList;
 
     private void run() {
         UserList=new Usuario();
+        conver=new DNA_or_RNA_Strand();
         LoginUser();
     }
     /**
@@ -184,22 +187,37 @@ private Usuario UserList;
                         selectedOption = sc.nextInt();
                         // process option selected
 			switch (selectedOption) {
-				case 0: //List All Users
-                                        //ListAllUsers();
-					break;
-				case 1: //Create a new User
-					//AddNewUser();
-					break;
-				case 7: //Logout
-                                        comp=1;
-					exit=true;         
-					break;
-                                case 8: //Exit
-                                        exit = true;
-                                        break;                                        
-				default:
-					System.out.println("Invalid option");
-					break;
+                                    case 0:
+                                            add_new_user();
+                                            break;
+                                    case 1:
+                                            Turn_around_strand();
+                                            break;
+                                    case 2: //nitrogenous base more repited
+                                            baseMasRepetida();
+                                            break;
+                                    case 3: //nitrogenous base less repited
+                                            baseMenosRepetida();
+                                            break;
+                                    case 4: //nitrogenous base count
+                                            nitrogenous_bases_count();
+                                            break;
+                                    case 5: //List your Information
+                                            ConversADNtoARN();
+                                            break;
+                                    case 6:
+                                            ConversARNtoADN();
+                                            break;
+                                    case 7: //Logout
+                                            comp=1;
+                                            exit=true;         
+                                            break;
+                                    case 8: //Exit
+                                            exit = true;
+                                            break;                                        
+                                    default:
+                                            System.out.println("Invalid option");
+                                            break;
 			}
         }while(!exit);
         if(comp==1){
@@ -230,8 +248,23 @@ private Usuario UserList;
                             selectedOption = sc.nextInt();
                             // process option selected
                             switch (selectedOption) {
-                                    case 0: //List your Information
-                                            //ListYourInformation(username);
+                                    case 0:
+                                            Turn_around_strand();
+                                            break;
+                                    case 1: //nitrogenous base more repited
+                                            baseMasRepetida();
+                                            break;
+                                    case 2: //nitrogenous base less repited
+                                            baseMenosRepetida();
+                                            break;
+                                    case 3: //nitrogenous base count
+                                            nitrogenous_bases_count();
+                                            break;
+                                    case 4: //List your Information
+                                            ConversADNtoARN();
+                                            break;
+                                    case 5:
+                                            ConversARNtoADN();
                                             break;
                                     case 6: //Logout
                                             comp=1;
@@ -251,5 +284,52 @@ private Usuario UserList;
                System.out.println("See you later or Again !"); 
             }        
     }
+
+    private void ConversADNtoARN() {
+        
+        String DNAInput=AskUserADNString();
+        String newArnConvert=conver.ConvertDNA_to_RNA(DNAInput);
+        System.out.println("ARN NEW : " + newArnConvert);
+        
+    }
+
+    private void baseMasRepetida() {
+        String strand=AskUserADNString();
+        conver.ContarBaseRepetida(strand);
+    }
+
+    private String AskUserADNString() {
+       String comp= conver.Validate_strand();
+       return comp;
+    }
+
+    private void baseMenosRepetida() {
+        String DNAInput=AskUserADNString();
+        conver.ContarBaseMenosRepitada(DNAInput);
+    }
+
+    private void Turn_around_strand() {
+       String DNAInput=AskUserADNString();
+       conver.ReverseString(DNAInput);
+    }
+
+    private void nitrogenous_bases_count() {
+        String DNAInput=AskUserADNString();
+        String comp=conver.bases_count(DNAInput);
+
+    }
+
+    private void ConversARNtoADN() {
+        String DNAInput=AskUserADNString();
+        String newArnConvert=conver.ConvertRNA_to_DNA(DNAInput);
+         System.out.println("ADN NEW : " + newArnConvert);
+    }
+
+    private void add_new_user() {
+       Usuario user=UserList.FormUser(); 
+       UserList.AddNewUser(user);
+    }
+    
+
 
 }

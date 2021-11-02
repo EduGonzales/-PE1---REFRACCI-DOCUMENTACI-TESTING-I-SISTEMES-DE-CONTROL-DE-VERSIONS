@@ -5,6 +5,8 @@
  */
 package pt12_m15.model;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import pt12_m15.persist.UserDAO;
 
 /**
@@ -69,6 +71,60 @@ public class Usuario {
     public String[] loginUser(String username, String password) {
         userdao=new UserDAO();
        return userdao.findUserLogin(username,password);
+    }
+
+    public Usuario FormUser() {
+        Usuario user=new Usuario();
+        String nickname,password,role;
+        
+        
+        nickname=AskNickname();
+        if(nickname==null){
+            return user=null;
+        }
+        
+        password=AskPassword();
+        if(password==null){
+            return user=null;
+        }
+        
+        role="USER";
+        user=new Usuario(nickname,password,role);
+        
+        return user;     
+    }
+
+    private String AskNickname() {
+        Scanner sc = new Scanner(System.in);
+        String nickname;
+        System.out.println("Insert your nickname!");
+        nickname=sc.nextLine();
+        //[A-Za-z ]
+          if(!nickname.matches("[a-zA-Z ]")){
+            System.out.println("Not valid nickname!!!");
+            return nickname=null;
+        }else{
+            return nickname;
+        }
+    }
+
+    private String AskPassword() {
+        Scanner sc = new Scanner(System.in);
+        String password;
+        System.out.println("Insert your password!");
+        password=sc.nextLine();
+        //[A-Za-z ]
+          if(!password.matches("[0-9]{1,5}")){
+            System.out.println("Not valid password!!!");
+            return password=null;
+        }else{
+            return password;
+        }
+    }
+
+    public void AddNewUser(Usuario user) {
+       userdao=new UserDAO();
+       userdao.add_new_user(user);
     }
     
     

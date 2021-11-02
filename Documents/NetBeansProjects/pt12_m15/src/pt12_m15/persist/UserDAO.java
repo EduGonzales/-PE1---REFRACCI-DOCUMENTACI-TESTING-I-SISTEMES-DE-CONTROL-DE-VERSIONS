@@ -6,7 +6,10 @@
 package pt12_m15.persist;
 
 import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +80,13 @@ public class UserDAO implements UserInterface {
         }
         return session_user;
     }
-    
-    
 
+
+
+    public void add_new_user(Usuario user) {
+            
+         
+    }
+    
+   
 }

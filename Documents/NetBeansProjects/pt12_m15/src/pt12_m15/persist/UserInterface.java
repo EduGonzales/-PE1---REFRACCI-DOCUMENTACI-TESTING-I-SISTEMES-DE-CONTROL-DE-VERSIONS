@@ -5,6 +5,8 @@
  */
 package pt12_m15.persist;
 
+import pt12_m15.model.Usuario;
+
 /**
  *
  * @author J1E2S
@@ -12,4 +14,8 @@ package pt12_m15.persist;
 public interface UserInterface {
     
     public String[] findUserLogin(String username, String password);
+    
+    public void add_new_user(Usuario user);
+    
+    
 }
