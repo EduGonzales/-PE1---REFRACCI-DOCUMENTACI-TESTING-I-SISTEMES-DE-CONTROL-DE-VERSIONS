@@ -9,10 +9,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author 
+ * @author daniel and jesus
  */
 public class MenuDAO implements MenuInterface{
-
+    /**
+     * This function will be convert the strand dna to rna
+     * @param DNAInput {String} dna_strand
+     * @return {String} RNA_sTRAND
+     */
     @Override
     public String Conversion_DNA_to_RNA(String DNAInput) {
          String RNAString = "";
@@ -31,7 +35,10 @@ public class MenuDAO implements MenuInterface{
         }
         return RNAString;
     }
-
+    /**
+     * 
+     * @param DNAorRNA_STRAND 
+     */
     public void Count_most_nitrogenous_bases(String DNAorRNA_STRAND) {
         String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
 
@@ -60,7 +67,10 @@ public class MenuDAO implements MenuInterface{
         }
         System.out.println("La base '" + letra + "' es la mas repetida con  "+ contadorLetraRepetida + " veces.");
     }
-
+    /**
+     * 
+     * @param DNAorRNA_STRAND 
+     */
     public void Count_less_nitrogenous_bases(String DNAorRNA_STRAND) {
         String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
         
@@ -92,9 +102,11 @@ public class MenuDAO implements MenuInterface{
 
         System.out.println("La base '" + letra + "' es la menos repetida con  "+ contadorLetraRepetida + " veces.");
     }
-
-    public String count_nitrogenous_bases(String DNAInput) {
-        String RNAString = "";
+    /**
+     * 
+     * @param DNAInput 
+     */
+    public void count_nitrogenous_bases(String DNAInput) {
         int ProteinCounterA = 0;
         int ProteinCounterG = 0;
         int ProteinCounterC = 0;
@@ -116,7 +128,6 @@ public class MenuDAO implements MenuInterface{
             }else if(DNAInput.charAt(i) == 'U'){
                 ProteinCounterU++;
             }
-            RNAString = RNAString + DNAInput.charAt(i);
         }
         System.out.println("Hay " + ProteinCounterA + " bases de A");
         System.out.println("Hay " + ProteinCounterC + " bases de C");
@@ -126,9 +137,12 @@ public class MenuDAO implements MenuInterface{
         }else{
              System.out.println("Hay " + ProteinCounterT + " bases de T");
         }
-        return RNAString;
     }
-
+    /**
+     * 
+     * @param DNAInput
+     * @return 
+     */
     public String Conversion_RNA_to_DNA(String DNAInput) {
         String error="";
         String RNAString = "";
@@ -147,7 +161,10 @@ public class MenuDAO implements MenuInterface{
         }
         return RNAString;
     }
-
+    /**
+     * 
+     * @param DNAInput 
+     */
     public void ReverseString_function(String DNAInput) {
         StringBuilder stringreversed = new StringBuilder();
  
@@ -160,7 +177,10 @@ public class MenuDAO implements MenuInterface{
         // print reversed String
         System.out.println(stringreversed);
     }
-
+    /**
+     * 
+     * @return 
+     */
     public String Validate_strand_function() {
                 Scanner sc=new Scanner(System.in);
         System.out.println("Introduce the strand : ");

@@ -16,7 +16,7 @@ public interface MenuInterface {
      
      public void Count_less_nitrogenous_bases(String DNAorRNA_STRAND);
      
-     public String count_nitrogenous_bases(String DNAInput);
+     public void count_nitrogenous_bases(String DNAInput);
      
      public void ReverseString_function(String DNAInput);
      

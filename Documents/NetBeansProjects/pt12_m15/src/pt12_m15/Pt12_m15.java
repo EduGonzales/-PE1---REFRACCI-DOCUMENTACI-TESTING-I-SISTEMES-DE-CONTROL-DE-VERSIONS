@@ -37,14 +37,14 @@ private DNA_or_RNA_Strand conver;
             "Find the least repeated nitrogenous bases.","Count bases and show it.","Convert DNA to RNA",
             "Convert an RNA to DNA","Logout","Exit"
         };
-        //String [] for display the menu with the role USER
+        //String [] for display the menu with the role ADMIN
         private String[] MainMenuADMIN ={
             "ADD NEW USER","Turn a DNA strand." ,"Find the most repeated nitrogenous bases.",
             "Find the least repeated nitrogenous bases.","Count bases and show it.","Convert DNA to RNA",
             "Convert an RNA to DNA","Logout","Exit"
         };
     public static void main(String[] args) throws IOException {
-
+        
         Pt12_m15 myApp=new Pt12_m15();
         //MAIN APP
         myApp.run(); 
@@ -124,7 +124,7 @@ private DNA_or_RNA_Strand conver;
             e.printStackTrace();
         }    
     }
-
+     
     private void run() {
         UserList=new Usuario();
         conver=new DNA_or_RNA_Strand();
@@ -132,6 +132,7 @@ private DNA_or_RNA_Strand conver;
     }
     /**
      * This function will be display the Login and save the correct login of the user
+     * @author jesus
      */
     private void LoginUser() {
         //array for save the username and role of the user
@@ -168,6 +169,7 @@ private DNA_or_RNA_Strand conver;
     /**
      * This function will be display the menu of the role ADMIN and the user will 
      * the user will have to choose an option
+     * @author jesus
      */
     private void DisplayMenu() {
     //variable to exit the menu loop
@@ -194,10 +196,10 @@ private DNA_or_RNA_Strand conver;
                                             Turn_around_strand();
                                             break;
                                     case 2: //nitrogenous base more repited
-                                            baseMasRepetida();
+                                            base_most_repeated();
                                             break;
                                     case 3: //nitrogenous base less repited
-                                            baseMenosRepetida();
+                                            base_less_repeated();
                                             break;
                                     case 4: //nitrogenous base count
                                             nitrogenous_bases_count();
@@ -229,6 +231,7 @@ private DNA_or_RNA_Strand conver;
     /**
      * This function will be display the menu of the role USER and the user will 
      * the user will have to choose an option
+     * @author jesus
      */
     private void DisplayMenuUser(String username) {
         //variable to exit the menu loop
@@ -252,10 +255,10 @@ private DNA_or_RNA_Strand conver;
                                             Turn_around_strand();
                                             break;
                                     case 1: //nitrogenous base more repited
-                                            baseMasRepetida();
+                                            base_most_repeated();
                                             break;
                                     case 2: //nitrogenous base less repited
-                                            baseMenosRepetida();
+                                            base_less_repeated();
                                             break;
                                     case 3: //nitrogenous base count
                                             nitrogenous_bases_count();
@@ -284,48 +287,88 @@ private DNA_or_RNA_Strand conver;
                System.out.println("See you later or Again !"); 
             }        
     }
-
+    /**
+     * This function its for convers a strand_DNA to _strand_RNA
+     * And display the resulto to the user
+     * @author Daniel
+     */
     private void ConversADNtoARN() {
-        
+        //first of all ask to the user the strand DNA and validate the strad_DNA
         String DNAInput=AskUserADNString();
+        //this function will be call the function to convers the strand DNA
         String newArnConvert=conver.ConvertDNA_to_RNA(DNAInput);
-        System.out.println("ARN NEW : " + newArnConvert);
+        //and display the result , THE NEW strand_RNA
+        System.out.println("New RNA STRAND : " + newArnConvert);
         
     }
-
-    private void baseMasRepetida() {
+    /**
+     * This function will be count the most nitrogenous_bases repeated
+     * @author Daniel
+     */
+    private void base_most_repeated() {
+        //first of all ask to the user the strand DNA and validate the strad_DNA
         String strand=AskUserADNString();
-        conver.ContarBaseRepetida(strand);
+        conver.Count_base_most_repeated(strand);
     }
-
+    /**
+     * This function its for ask to the user the STRAND to operate
+     * and validate the Strand In another function
+     * @author Daniel
+     * @return {String} STRAND VALIDATED
+     */
     private String AskUserADNString() {
+        //first of all ask to the user the strand DNA and validate the strad_DNA
        String comp= conver.Validate_strand();
        return comp;
     }
-
-    private void baseMenosRepetida() {
+    /**
+     * This function will be count the less nitrogenous_bases repeated
+     * @author Daniel
+     */
+    private void base_less_repeated() {
+        //first of all ask to the user the strand DNA and validate the strad_DNA
         String DNAInput=AskUserADNString();
-        conver.ContarBaseMenosRepitada(DNAInput);
+        //this function will be call another function for count
+        conver.Count_base_less_repeated(DNAInput);
     }
-
+    /**
+     * this function will be reverse the strand introduced
+     * @author Daniel
+     */
     private void Turn_around_strand() {
+        //first of all ask to the user the strand DNA and validate the strad_DNA
        String DNAInput=AskUserADNString();
+       //function to reverse the strand
        conver.ReverseString(DNAInput);
     }
-
+    /**
+     * this function will be count and display the number of nitrogenous_bases introduced
+     * @author Daniel
+     */
     private void nitrogenous_bases_count() {
+        //first of all ask to the user the strand DNA and validate the strad_DNA
         String DNAInput=AskUserADNString();
-        String comp=conver.bases_count(DNAInput);
+        conver.bases_count(DNAInput);
 
     }
-
+    /**
+     * This function will be convers a strand of ARN to ADN
+     * and display to the user
+     * @author Daniel
+     */
     private void ConversARNtoADN() {
+        //first of all ask to the user the strand DNA and validate the strad_DNA
+        
         String DNAInput=AskUserADNString();
         String newArnConvert=conver.ConvertRNA_to_DNA(DNAInput);
-         System.out.println("ADN NEW : " + newArnConvert);
+        System.out.println("ADN NEW : " + newArnConvert);
     }
-
+    /**
+     * not incorporated
+     * @author jesus
+     */
     private void add_new_user() {
+        //first of all ask to the user the strand DNA and validate the strad_DNA
        Usuario user=UserList.FormUser(); 
        UserList.AddNewUser(user);
     }
