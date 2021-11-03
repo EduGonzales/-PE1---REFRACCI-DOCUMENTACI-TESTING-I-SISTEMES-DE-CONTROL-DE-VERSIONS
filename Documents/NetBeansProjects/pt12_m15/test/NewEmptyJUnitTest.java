@@ -46,7 +46,7 @@ public class NewEmptyJUnitTest extends TestCase{
     //@Test
     // public void hello() {}
     /**
-     * 
+     * This test validates the convers the DNA-STRAND TO RNA_STRAN, the test must be true in this case
      */
     public void test1(){
         menudao = new MenuDAO();
@@ -63,7 +63,7 @@ public class NewEmptyJUnitTest extends TestCase{
          assertEquals(resultado_previo,resultado_Real);
     }
     /**
-     * 
+     * This test validates the convers the DNA-STRAND TO RNA_STRAN, the test must be false in this case
      */
     public void test2(){
         boolean resultado_previo=true;
@@ -99,8 +99,8 @@ public class NewEmptyJUnitTest extends TestCase{
         }
          assertEquals(resultado_previo,resultado_Real);
     }
-        /**
-     * This test validates the user logins, the test must be true in order to prpceed.
+    /**
+     * This test validates the user logins, the test must be false in order to prpceed.
      */
     public void test4(){
         userdao = new UserDAO();
@@ -118,15 +118,62 @@ public class NewEmptyJUnitTest extends TestCase{
         }
          assertEquals(resultado_previo,resultado_Real);
     }
+    /**
+     * This test validates the strand introduced by the user, the test must be true in this case
+     */
     public void test5(){
         boolean resultado_previo=true;
         menudao=new MenuDAO();
         String strand="AGTAGTC";
-        String comp=menudao.Validate_strand_function();
+        String comp=menudao.Validate_strand_function(strand);
         
-                 boolean resultado_Real=true;
+         boolean resultado_Real=true;
          
          if (comp.equals("")) {
+             resultado_Real=false;
+        }
+         assertEquals(resultado_previo,resultado_Real);
+    }
+    /**
+     * This test validates the strand introduced by the user, the test must be false in this case
+     */
+    public void test6(){
+        boolean resultado_previo=true;
+        menudao=new MenuDAO();
+        String strand="AGTYGC";
+        String comp=menudao.Validate_strand_function(strand);
+        
+         boolean resultado_Real=true;
+         
+         if (comp.equals("")) {
+             resultado_Real=false;
+        }
+         assertEquals(resultado_previo,resultado_Real);
+    }
+    
+    public void test7(){
+        boolean resultado_previo=true;
+        menudao=new MenuDAO();
+        String strand="AGTAGTCCATAG";
+        boolean comp=menudao.Count_most_nitrogenous_bases(strand);
+        
+         boolean resultado_Real=true;
+         
+         if (!comp) {
+             resultado_Real=false;
+        }
+         assertEquals(resultado_previo,resultado_Real);
+    }
+        
+    public void test8(){
+        boolean resultado_previo=true;
+        menudao=new MenuDAO();
+        String strand="AGTYGTCCATAG";
+        boolean comp=menudao.Count_most_nitrogenous_bases(strand);
+        
+         boolean resultado_Real=true;
+         
+         if (!comp) {
              resultado_Real=false;
         }
          assertEquals(resultado_previo,resultado_Real);

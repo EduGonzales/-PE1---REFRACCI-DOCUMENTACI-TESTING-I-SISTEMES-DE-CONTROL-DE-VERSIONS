@@ -34,11 +34,11 @@ public class DNA_or_RNA_Strand {
      * @param DNAorRNA_STRAND {String STRAND of dna or rna}
      * @author Daniel
      */
-    public void Count_base_most_repeated(String DNAorRNA_STRAND) {
+    public boolean Count_base_most_repeated(String DNAorRNA_STRAND) {
         //inicializate the menudao -> MenuDao and interface
         menudao=new MenuDAO();
         //call the another function in the MENuDAO to count the most repeated nitrogenous_bases
-        menudao.Count_most_nitrogenous_bases(DNAorRNA_STRAND);       
+        return menudao.Count_most_nitrogenous_bases(DNAorRNA_STRAND);       
     }
     /**
      * This function will be call another function to count the less nitrogenous_base
@@ -95,11 +95,11 @@ public class DNA_or_RNA_Strand {
      * @return {String} reversed strand
      * @author jesus
      */
-    public String Validate_strand() {
+    public String Validate_strand(String strand_unvalidaded) {
         //inicializate the menudao -> MenuDao and interface
         menudao=new MenuDAO();
         //call another function in menudao to validate the strand
-        return menudao.Validate_strand_function();
+        return menudao.Validate_strand_function(strand_unvalidaded);
 
     }
 }

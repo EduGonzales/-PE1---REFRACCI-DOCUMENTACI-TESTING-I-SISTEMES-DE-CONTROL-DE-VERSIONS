@@ -46,9 +46,9 @@ public class MenuDAO implements MenuInterface{
      * This function will be count the most nitrogenous bases in the strand
      * @param DNAorRNA_STRAND {String} strand of RNA OR DNA
      */
-    public void Count_most_nitrogenous_bases(String DNAorRNA_STRAND) {
+    public boolean Count_most_nitrogenous_bases(String DNAorRNA_STRAND) {
         String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
-
+        boolean comp=true;
         int Cont_nitrogenous_bases = 0;
         char charArray[] = strand.toCharArray();
         char chaR = charArray[0];
@@ -58,6 +58,9 @@ public class MenuDAO implements MenuInterface{
             switch(strand.charAt(i)){
                 case 'a': case 'g': case 't': case 'c': case 'u':
                     Cont_nitrogenous_bases++;
+                    break;
+                default:
+                    comp=false;
                     break;
             }
         }
@@ -73,6 +76,7 @@ public class MenuDAO implements MenuInterface{
             }
         }
         System.out.println("Nitrogenous base '" + chaR + "' is the most repeated with  "+ count_repeated + " TIMES.");
+        return comp;
     }
     /**
      * This function will be count the LESS nitrogenous bases in the strand
@@ -187,11 +191,8 @@ public class MenuDAO implements MenuInterface{
      * This function its for validate the strand, RNA OR DNA
      * @return {String} dna or rna
      */
-    public String Validate_strand_function() {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Introduce the strand : ");
-        String strand_unvalidaded=sc.nextLine();
-        
+    public String Validate_strand_function(String strand_unvalidaded) {
+
         char[] caractersADN = strand_unvalidaded.toCharArray();
           //declaring variables to count nitrogenous bases
         int ContA=0,ContT=0,ContG=0,ContC = 0,ContU=0;
@@ -217,7 +218,7 @@ public class MenuDAO implements MenuInterface{
                 default:
                     System.out.println("Error. Invalid DNA or RNA sequence.");
                     System.out.println("In position " + index + " there is one character that is not valid");
-                    System.exit(0);
+                    strand_unvalidaded="";   
                     break;
             
         }

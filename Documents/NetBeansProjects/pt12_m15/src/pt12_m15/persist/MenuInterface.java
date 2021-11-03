@@ -21,7 +21,7 @@ public interface MenuInterface {
      * This function will be count the most nitrogenous bases in the strand
      * @param DNAorRNA_STRAND {String} strand of RNA OR DNA
      */
-     public void Count_most_nitrogenous_bases(String DNAorRNA_STRAND);
+     public boolean Count_most_nitrogenous_bases(String DNAorRNA_STRAND);
     /**
      * This function will be count the LESS nitrogenous bases in the strand
      * @param DNAorRNA_STRAND {String} strand of RNA OR DNA
@@ -47,5 +47,5 @@ public interface MenuInterface {
      * This function its for validate the strand, RNA OR DNA
      * @return {String} dna or rna
      */
-     public String Validate_strand_function();
+     public String Validate_strand_function(String strand_unvalidaded);
 }

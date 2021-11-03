@@ -295,10 +295,15 @@ private DNA_or_RNA_Strand conver;
     private void ConversADNtoARN() {
         //first of all ask to the user the strand DNA and validate the strad_DNA
         String DNAInput=AskUserADNString();
+        if(DNAInput.equals("")  ){
+            System.out.println("This strand its not operable");
+        }else{
         //this function will be call the function to convers the strand DNA
         String newArnConvert=conver.ConvertDNA_to_RNA(DNAInput);
         //and display the result , THE NEW strand_RNA
         System.out.println("New RNA STRAND : " + newArnConvert);
+        }
+
         
     }
     /**
@@ -308,7 +313,12 @@ private DNA_or_RNA_Strand conver;
     private void base_most_repeated() {
         //first of all ask to the user the strand DNA and validate the strad_DNA
         String strand=AskUserADNString();
-        conver.Count_base_most_repeated(strand);
+        if(strand.equals("")  ){
+            System.out.println("This strand its not operable");
+        }else{
+            boolean comp=conver.Count_base_most_repeated(strand);
+        }
+        
     }
     /**
      * This function its for ask to the user the STRAND to operate
@@ -318,7 +328,11 @@ private DNA_or_RNA_Strand conver;
      */
     private String AskUserADNString() {
         //first of all ask to the user the strand DNA and validate the strad_DNA
-       String comp= conver.Validate_strand();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Introduce the strand : ");
+        String strand_unvalidaded=sc.nextLine();
+        
+       String comp= conver.Validate_strand(strand_unvalidaded);
        return comp;
     }
     /**
@@ -328,8 +342,13 @@ private DNA_or_RNA_Strand conver;
     private void base_less_repeated() {
         //first of all ask to the user the strand DNA and validate the strad_DNA
         String DNAInput=AskUserADNString();
+        if(DNAInput.equals("")  ){
+            System.out.println("This strand its not operable");
+        }else{
         //this function will be call another function for count
-        conver.Count_base_less_repeated(DNAInput);
+        conver.Count_base_less_repeated(DNAInput);           
+        }
+
     }
     /**
      * this function will be reverse the strand introduced
@@ -338,8 +357,13 @@ private DNA_or_RNA_Strand conver;
     private void Turn_around_strand() {
         //first of all ask to the user the strand DNA and validate the strad_DNA
        String DNAInput=AskUserADNString();
-       //function to reverse the strand
-       conver.ReverseString(DNAInput);
+        if(DNAInput.equals("")  ){
+            System.out.println("This strand its not operable");
+        }else{
+                //function to reverse the strand
+                conver.ReverseString(DNAInput);
+        }
+
     }
     /**
      * this function will be count and display the number of nitrogenous_bases introduced
@@ -348,7 +372,12 @@ private DNA_or_RNA_Strand conver;
     private void nitrogenous_bases_count() {
         //first of all ask to the user the strand DNA and validate the strad_DNA
         String DNAInput=AskUserADNString();
-        conver.bases_count(DNAInput);
+        if(DNAInput.equals("")  ){
+            System.out.println("This strand its not operable");
+        }else{
+            conver.bases_count(DNAInput);      
+        }
+        
 
     }
     /**
@@ -360,8 +389,13 @@ private DNA_or_RNA_Strand conver;
         //first of all ask to the user the strand DNA and validate the strad_DNA
         
         String DNAInput=AskUserADNString();
-        String newArnConvert=conver.ConvertRNA_to_DNA(DNAInput);
-        System.out.println("ADN NEW : " + newArnConvert);
+        if(DNAInput.equals("")  ){
+            System.out.println("This strand its not operable");
+        }else{
+            String newArnConvert=conver.ConvertRNA_to_DNA(DNAInput);
+            System.out.println("ADN NEW : " + newArnConvert);           
+        }
+
     }
     /**
      * not incorporated
