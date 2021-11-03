@@ -48,8 +48,11 @@ public class MenuDAO implements MenuInterface{
      */
     public boolean Count_most_nitrogenous_bases(String DNAorRNA_STRAND) {
         String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
+        
         boolean comp=true;
+         //declaring variables
         int Cont_nitrogenous_bases = 0;
+                //change the string to char array
         char charArray[] = strand.toCharArray();
         char chaR = charArray[0];
         int count_repeated = 0;
@@ -83,9 +86,11 @@ public class MenuDAO implements MenuInterface{
      * @param DNAorRNA_STRAND {String} strand of RNA OR DNA
      */
     public void Count_less_nitrogenous_bases(String DNAorRNA_STRAND) {
-        String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
         
+        String strand = DNAorRNA_STRAND.toLowerCase();//Pasa la cadena a minúsculas
+        //declaring variables
         int Count_char = 0;
+        //change the string to char array
         char charArray[] = strand.toCharArray();
         char chaR = charArray[0];
         int count_repeated = 0;
@@ -117,6 +122,7 @@ public class MenuDAO implements MenuInterface{
      * @param DNAInput {String} dna or rna strand
      */
     public void count_nitrogenous_bases(String DNAInput) {
+        //declaring variables to count
         int ProteinCounterA = 0;
         int ProteinCounterG = 0;
         int ProteinCounterC = 0;
@@ -139,13 +145,13 @@ public class MenuDAO implements MenuInterface{
                 ProteinCounterU++;
             }
         }
-        System.out.println("Hay " + ProteinCounterA + " bases de A");
-        System.out.println("Hay " + ProteinCounterC + " bases de C");
-        System.out.println("Hay " + ProteinCounterG + " bases de G");
+        System.out.println("There are " + ProteinCounterA + " bases of A");
+        System.out.println("There are " + ProteinCounterC + " bases of C");
+        System.out.println("There are " + ProteinCounterG + " bases of G");
         if(ProteinCounterT==0){
-            System.out.println("Hay " + ProteinCounterU + " bases de U");
+            System.out.println("There are " + ProteinCounterU + " bases of U");
         }else{
-             System.out.println("Hay " + ProteinCounterT + " bases de T");
+             System.out.println("There are " + ProteinCounterT + " bases of T");
         }
     }
     /**
@@ -165,7 +171,13 @@ public class MenuDAO implements MenuInterface{
             }
             else
             {                                      
-                DNA_sTRING = DNA_sTRING + RNA_STRAND.charAt(i);
+                if(RNA_STRAND.charAt(i) != 'U' && RNA_STRAND.charAt(i) != 'A' &&RNA_STRAND.charAt(i) != 'G' && RNA_STRAND.charAt(i) != 'C'){
+                return "Not correct strand";
+                }
+                else{
+                    DNA_sTRING = DNA_sTRING + RNA_STRAND.charAt(i);
+                }
+                
             }
             
         }

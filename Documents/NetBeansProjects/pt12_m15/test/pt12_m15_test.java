@@ -16,12 +16,12 @@ import pt12_m15.persist.UserDAO;
 
 /**
  *
- * @author alumne
+ * @author jesus
  */
-public class NewEmptyJUnitTest extends TestCase{
+public class pt12_m15_test extends TestCase{
     private UserDAO userdao;
     private MenuDAO menudao;
-    public NewEmptyJUnitTest() {
+    public pt12_m15_test() {
     }
     
     @BeforeClass
@@ -45,6 +45,8 @@ public class NewEmptyJUnitTest extends TestCase{
     //
     //@Test
     // public void hello() {}
+    
+    
     /**
      * This test validates the convers the DNA-STRAND TO RNA_STRAN, the test must be true in this case
      */

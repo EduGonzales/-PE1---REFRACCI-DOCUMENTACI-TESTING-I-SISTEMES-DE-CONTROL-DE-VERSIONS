@@ -7,7 +7,7 @@ package pt12_m15.persist;
 
 /**
  *
- * @author 
+ * @author jesus
  */
 public interface MenuInterface {
     /**
@@ -20,6 +20,7 @@ public interface MenuInterface {
     /**
      * This function will be count the most nitrogenous bases in the strand
      * @param DNAorRNA_STRAND {String} strand of RNA OR DNA
+     * @return {boolean} comp
      */
      public boolean Count_most_nitrogenous_bases(String DNAorRNA_STRAND);
     /**

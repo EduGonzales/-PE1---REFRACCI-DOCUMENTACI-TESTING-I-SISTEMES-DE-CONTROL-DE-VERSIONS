@@ -23,7 +23,7 @@ import pt12_m15.model.DNA_or_RNA_Strand;
 
 /**
  *
- * @author J1E2S
+ * @author Jesus
  */
 public class Pt12_m15 {
 private Usuario UserList;
@@ -48,38 +48,41 @@ private DNA_or_RNA_Strand conver;
         Pt12_m15 myApp=new Pt12_m15();
         //MAIN APP
         myApp.run(); 
+        
+        //this its for create the csv(do it)
     
         /*List<Usuario> usuarios = new ArrayList<Usuario>();      
         usuarios.add(new Usuario("jesus", "1234","USER"));
         usuarios.add(new Usuario("profe", "12345","ADMIN"));*/
         //usuarios.add(new Usuario("profe", "12345");
         //ExportarCSV(usuarios);
-        //ImportarCSV();
+        
         
     }
     
-     public static void ImportarCSV() {
+ public static void ImportarCSV() {
         try{
-            List<Usuario> usuarios = new ArrayList<Usuario>(); // Lista donde guardaremos los datos del archivo
+            List<Usuario> users = new ArrayList<Usuario>(); // list to save the data of the users
             
-            CsvReader leerUsuarios = new CsvReader("Usuarios.csv");
-            leerUsuarios.readHeaders();
+            CsvReader reedUsers = new CsvReader("users.csv");
+            reedUsers.readHeaders();
             
-            // Mientras haya lineas obtenemos los datos del archivo
-            while(leerUsuarios.readRecord()) {
-                String nickname = leerUsuarios.get(0);
-                String password=leerUsuarios.get(1);
-                        
+            // read the file in this case the csv
+            while(reedUsers.readRecord()) {
+                String nickname = reedUsers.get(0);
+                String password=reedUsers.get(1);
+                String role=reedUsers.get(2);        
                 
-                usuarios.add(new Usuario(nickname, password)); // Añade la informacion a la lista
+                users.add(new Usuario(nickname, password,role)); // add the data in to the list
             }
             
-            leerUsuarios.close(); // Cierra el archivo
-            
-            // Recorremos la lista y la mostramos en la pantalla
-            for(Usuario user : usuarios) {
-                System.out.println(user.getNickname() + " , "
-                    + user.getPassword());
+            reedUsers.close(); // close the file
+            // display and search in the list
+            for(Usuario user : users) {
+                byte[] decodedpassword = Base64.decodeBase64(user.getPassword());
+                String password_decripted=new String(decodedpassword);
+                System.out.println( " Nickname -> " + user.getNickname() + " , "
+                    + "password decoded -> " + password_decripted + " /// password encoded -> " + user.getPassword() + " , " + " role -> " +user.getRole());
             }
             
         } catch(FileNotFoundException e) {
@@ -88,13 +91,13 @@ private DNA_or_RNA_Strand conver;
             e.printStackTrace();
         }
     }
-     public static void ExportarCSV(List<Usuario> usuarios) {
+   /*  public static void ExportarCSV(List<Usuario> usuarios) {
         String salidaArchivo = "users.csv"; // Nombre del archivo
         // Si existe un archivo llamado asi lo borra
-        /*if(existe) {
-            File archivoUsuarios = new File(salidaArchivo);
-            archivoUsuarios.delete();
-        }*/
+        //if(existe) {
+          //  File archivoUsuarios = new File(salidaArchivo);
+         //   archivoUsuarios.delete();
+        //}
         
         try {
             // Crea el archivo
@@ -123,11 +126,13 @@ private DNA_or_RNA_Strand conver;
         } catch(IOException e) {
             e.printStackTrace();
         }    
-    }
+    }*/
      
     private void run() {
         UserList=new Usuario();
         conver=new DNA_or_RNA_Strand();
+        System.out.println("USER LIST TO TEST:");
+        ImportarCSV();
         LoginUser();
     }
     /**

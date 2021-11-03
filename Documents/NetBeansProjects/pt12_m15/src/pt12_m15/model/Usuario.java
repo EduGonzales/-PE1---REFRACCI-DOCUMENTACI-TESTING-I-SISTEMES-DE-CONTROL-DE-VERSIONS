@@ -11,7 +11,7 @@ import pt12_m15.persist.UserDAO;
 
 /**
  *
- * @author J1E2S
+ * @author jesus
  */
 public class Usuario {
     
