@@ -35,13 +35,13 @@ private DNA_or_RNA_Strand conver;
         private String[] MainMenuUser ={
             "Turn a DNA strand." ,"Find the most repeated nitrogenous bases.",
             "Find the least repeated nitrogenous bases.","Count bases and show it.","Convert DNA to RNA",
-            "Convert an RNA to DNA","Logout","Exit"
+            "Convert an RNA to DNA","Calculate Length of the strand","Logout","Exit"
         };
         //String [] for display the menu with the role ADMIN
         private String[] MainMenuADMIN ={
             "ADD NEW USER","Turn a DNA strand." ,"Find the most repeated nitrogenous bases.",
             "Find the least repeated nitrogenous bases.","Count bases and show it.","Convert DNA to RNA",
-            "Convert an RNA to DNA","Logout","Exit"
+            "Convert an RNA to DNA","Calculate Length of the strand","Logout","Exit"
         };
     public static void main(String[] args) throws IOException {
         
@@ -77,10 +77,20 @@ private DNA_or_RNA_Strand conver;
             }
             
             reedUsers.close(); // close the file
+            String password_decripted=null;
             // display and search in the list
             for(Usuario user : users) {
-                byte[] decodedpassword = Base64.decodeBase64(user.getPassword());
-                String password_decripted=new String(decodedpassword);
+                //System.out.println(user.getPassword());
+                if(user.getPassword().matches("[0-9]{1,10}")){
+                  byte[] encodepassword = Base64.encodeBase64(user.getPassword().getBytes());
+                  String password_cripted=new String(encodepassword);
+                  byte[] decodedpassword = Base64.decodeBase64(password_cripted);
+                  password_decripted=new String(decodedpassword);
+                }else{
+                    byte[] decodedpassword = Base64.decodeBase64(user.getPassword());
+                    password_decripted=new String(decodedpassword);
+                }
+                
                 System.out.println( " Nickname -> " + user.getNickname() + " , "
                     + "password decoded -> " + password_decripted + " /// password encoded -> " + user.getPassword() + " , " + " role -> " +user.getRole());
             }
@@ -215,11 +225,14 @@ private DNA_or_RNA_Strand conver;
                                     case 6:
                                             ConversARNtoADN();
                                             break;
-                                    case 7: //Logout
+                                    case 7:
+                                            Calculate_length();
+                                            break;
+                                    case 8: //Logout
                                             comp=1;
                                             exit=true;         
                                             break;
-                                    case 8: //Exit
+                                    case 9: //Exit
                                             exit = true;
                                             break;                                        
                                     default:
@@ -274,11 +287,14 @@ private DNA_or_RNA_Strand conver;
                                     case 5:
                                             ConversARNtoADN();
                                             break;
-                                    case 6: //Logout
+                                    case 6:
+                                            Calculate_length();
+                                            break;
+                                    case 7: //Logout
                                             comp=1;
                                             exit=true;
                                             break;
-                                    case 7: //Exit
+                                    case 8: //Exit
                                             exit = true;
                                             break;
                                     default:
@@ -403,13 +419,26 @@ private DNA_or_RNA_Strand conver;
 
     }
     /**
-     * not incorporated
+     *not incorporated
      * @author jesus
      */
     private void add_new_user() {
         //first of all ask to the user the strand DNA and validate the strad_DNA
        Usuario user=UserList.FormUser(); 
        UserList.AddNewUser(user);
+    }
+    /**
+     * This function call another function in DNA_or_RN_strand class.
+     * what does the calculation
+     */
+    private void Calculate_length() {
+        String DNAInput=AskUserADNString();
+        if(DNAInput.equals("")  ){
+            System.out.println("This strand its not operable");
+        }else{
+            int lengt_strand=conver.Calculate_length_strand(DNAInput);
+            System.out.println("Length of the Strand : " + lengt_strand);           
+        }
     }
     
 

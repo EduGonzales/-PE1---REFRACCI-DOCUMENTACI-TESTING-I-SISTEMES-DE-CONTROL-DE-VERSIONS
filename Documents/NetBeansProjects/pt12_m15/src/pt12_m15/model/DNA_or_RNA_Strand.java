@@ -102,4 +102,13 @@ public class DNA_or_RNA_Strand {
         return menudao.Validate_strand_function(strand_unvalidaded);
 
     }
+    /**
+     * This function its for calculate the length of the strand
+     * @param DNAInput {String} strand 
+     * @return {int} length calculated
+     */
+    public int Calculate_length_strand(String strand) {
+        menudao=new MenuDAO();
+        return menudao.Calculate_length_of_strand(strand);
+    }
 }

@@ -1,3 +1,4 @@
 nickname,password,role
 jesus,MTIzNA==,USER
 profe,MTIzNDU=,ADMIN
+alumne,123456,USER

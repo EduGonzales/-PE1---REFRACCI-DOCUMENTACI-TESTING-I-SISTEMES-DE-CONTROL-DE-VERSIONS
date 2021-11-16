@@ -18,7 +18,7 @@ public interface UserInterface {
      * @param password {String} password
      * @return {String[]} string of arrays to validate the role
      */
-    public String[] findUserLogin(String username, String password);
+    public String[] findUserInCSV(String username, String password);
     /**
      * This function in a future will be use for add a new user in the csv
      * @param user 

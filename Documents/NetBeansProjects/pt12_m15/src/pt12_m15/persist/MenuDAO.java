@@ -239,5 +239,26 @@ public class MenuDAO implements MenuInterface{
     }
            return strand_unvalidaded;
     }
+    /**
+     * This function calculated the legnth of the strand introduced by the user
+     * @param strand {String} strand of adn or arn
+     * @return {int} strandLength
+     */
+    public int Calculate_length_of_strand(String strand) {
+        
+        int strandLength=0;
+        for (int i = 0; i < strand.length(); i++)
+        {                                      
+                if(strand.charAt(i) != 'U' && strand.charAt(i) != 'A' &&strand.charAt(i) != 'G' && strand.charAt(i) != 'C'&& strand.charAt(i) != 'T'){
+                return 1;
+                }
+                else{
+                    strandLength = strand.length();
+                    
+                }          
+        }
+
+         return strandLength;  
+    }
 
 }

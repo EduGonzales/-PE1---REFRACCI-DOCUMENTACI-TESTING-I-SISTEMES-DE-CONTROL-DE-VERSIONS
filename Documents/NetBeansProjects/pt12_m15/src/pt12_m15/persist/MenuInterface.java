@@ -49,4 +49,11 @@ public interface MenuInterface {
      * @return {String} dna or rna
      */
      public String Validate_strand_function(String strand_unvalidaded);
+     
+     /**
+      * This function its for calculated the length of the strand
+      * @param strand {String} strand
+      * @return {int} strand
+      */
+     public int Calculate_length_of_strand(String strand);
 }

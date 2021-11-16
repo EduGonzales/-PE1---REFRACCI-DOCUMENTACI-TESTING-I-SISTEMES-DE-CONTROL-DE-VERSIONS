@@ -90,7 +90,7 @@ public class pt12_m15_test extends TestCase{
         String username="jesus";
          String password="1234";
         boolean resultado_previo=true;
-         String[] res=userdao.findUserLogin(username, password);
+         String[] res=userdao.findUserInCSV(username, password);
          //System.out.println(res);
          
          
@@ -109,7 +109,7 @@ public class pt12_m15_test extends TestCase{
         String username="pedro";
          String password="124";
         boolean resultado_previo=true;
-         String[] res=userdao.findUserLogin(username, password);
+         String[] res=userdao.findUserInCSV(username, password);
          //System.out.println(res);
          
          
@@ -152,7 +152,9 @@ public class pt12_m15_test extends TestCase{
         }
          assertEquals(resultado_previo,resultado_Real);
     }
-    
+    /**
+     * This test validates the count of the most nitrogenous bases,the test must be true in this case
+     */
     public void test7(){
         boolean resultado_previo=true;
         menudao=new MenuDAO();
@@ -166,7 +168,9 @@ public class pt12_m15_test extends TestCase{
         }
          assertEquals(resultado_previo,resultado_Real);
     }
-        
+    /**
+     * This test validates the count of the most nitrogenous bases, the test must be false in this case
+     */
     public void test8(){
         boolean resultado_previo=true;
         menudao=new MenuDAO();
@@ -176,6 +180,51 @@ public class pt12_m15_test extends TestCase{
          boolean resultado_Real=true;
          
          if (!comp) {
+             resultado_Real=false;
+        }
+         assertEquals(resultado_previo,resultado_Real);
+    }
+    /**
+     * This test validate of the calculated of the strand adn, the test must be true in this case
+     */
+    public void test9(){
+        boolean resultado_previo=true;
+        menudao=new MenuDAO();
+        String strand="AGTGTCCATAG";
+        int comp=menudao.Calculate_length_of_strand(strand);
+         boolean resultado_Real=true;
+         
+         if (comp==1) {
+             resultado_Real=false;
+        }
+         assertEquals(resultado_previo,resultado_Real);
+    }
+    /**
+     * This test validate of the calculated of the strand arn, the test must be true in this case
+     */
+    public void test10(){
+        boolean resultado_previo=true;
+        menudao=new MenuDAO();
+        String strand="AGUGUCCAUAG";
+        int comp=menudao.Calculate_length_of_strand(strand);
+         boolean resultado_Real=true;
+         
+         if (comp==1) {
+             resultado_Real=false;
+        }
+         assertEquals(resultado_previo,resultado_Real);
+    }
+    /**
+     * This test validate of the calculated of the strand, the test must be false in this case
+     */
+    public void test11(){
+        boolean resultado_previo=true;
+        menudao=new MenuDAO();
+        String strand="AGTYGTCCATAG";
+        int comp=menudao.Calculate_length_of_strand(strand);
+         boolean resultado_Real=true;
+         
+         if (comp==1) {
              resultado_Real=false;
         }
          assertEquals(resultado_previo,resultado_Real);

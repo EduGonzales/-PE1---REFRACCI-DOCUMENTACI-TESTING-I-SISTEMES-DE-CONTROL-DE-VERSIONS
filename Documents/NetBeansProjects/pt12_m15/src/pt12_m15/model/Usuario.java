@@ -77,7 +77,7 @@ public class Usuario {
         //inicializate the userdao
         userdao=new UserDAO();
         //this function call to the function to find in the CSV
-       return userdao.findUserLogin(username,password);
+       return userdao.findUserInCSV(username,password);
     }
     /**
      * This form its for ask the user the data to the new user

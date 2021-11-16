@@ -27,10 +27,11 @@ public class UserDAO implements UserInterface {
      * @param password {String} password
      * @return {String[]} string of arrays to validate the role
      */
-    public String[] findUserLogin(String username, String password) {
+    public String[] findUserInCSV(String username, String password) {
         //array for save the username and role of the user        
         String[] session_user = new String[3];
         session_user[0]="";
+        String password_decripted=null;
         //variable for validate the user exits
         boolean exists = false;   
         
@@ -51,8 +52,22 @@ public class UserDAO implements UserInterface {
             // Recorremos la lista y la mostramos en la pantalla
             for(int i=0;i<usuarios.size() && !exists; i++) {
                 Usuario p=usuarios.get(i);
+                //System.out.println(p.getPassword());
+                if(p.getPassword().matches("[0-9]{1,10}")){
+                    byte[] encodepassword = Base64.encodeBase64(p.getPassword().getBytes());
+                    //System.out.println("enconde byte"+encodepassword);
+                    String password_cripted=new String(encodepassword);
+                    //System.out.println("string : " +password_cripted);
+                    
+                    byte[] decodedpassword = Base64.decodeBase64(password_cripted);
+                    //System.out.println("decode : " + decodedpassword);
+                    password_decripted=new String(decodedpassword);
+                    //System.out.println("password " + password_decripted);
+                }else{
                  byte[] decodedpassword = Base64.decodeBase64(p.getPassword());
-                 String password_decripted=new String(decodedpassword);
+                 password_decripted=new String(decodedpassword);
+                }
+
                 if(p.getNickname().toLowerCase().equals(username) && password_decripted.equals(password)){
                     System.out.println("Usuario : " + p.getNickname());
                     System.out.println("Contraseña SIN DESENCRIPTAR: " + p.getPassword());
